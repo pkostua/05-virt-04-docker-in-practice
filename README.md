@@ -26,8 +26,10 @@ rm ./"${GH_REPO}-${GH_BRANCH}.tar.gz"
 cd ${GH_REPO}-${GH_BRANCH}
 docker build --tag ${GH_REPO}:${GH_BRANCH} -f Dockerfile.python .
 
+#Копируем все необходимое для запуска
 cp -r .env compose.yaml proxy.yaml nginx haproxy /runtimedir
 
+#Удаляем скачанный репозиторий, он не нужен для выполнения
 cd ..
 rm -rf ${GH_REPO}-${GH_BRANCH}
 
