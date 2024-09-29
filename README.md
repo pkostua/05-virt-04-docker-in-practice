@@ -76,3 +76,4 @@ find "$BACKUP_DIR" -type f -name "*.sql" -mtime +7 -exec rm {} \;
 ```
 ## Список бакапов
 ![image](https://github.com/user-attachments/assets/b20b2c43-c307-4d11-bbfb-90c1df102750)
+## crontab -e
