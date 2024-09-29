@@ -48,7 +48,7 @@ https://github.com/pkostua/shvirtd-example-python
 FROM schnitzler/mysqldump
 RUN apk add --no-cache mysql-client mariadb-connector-c
 ```
-Собираем образ, и запускам скрипт с использованием нового образа
+Собираем образ, и запускаем скрипт с использованием нового образа
 ## Скрипт бакапа
 ```
 # Загрузка переменных из .env файла
