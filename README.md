@@ -40,4 +40,39 @@ docker compose up -d
 ### Ссылка на репозиторий
 https://github.com/pkostua/shvirtd-example-python
 
+## Задание 5.
+Мне не удалось выполнить эту таску в точном соответствии с текстом задания. При запуске schnitzler/mysqldump возникала ошибко по отсутствию библиотеки caching_sha2_password.so. Решить проблему параметрами командной строки не получилось. Ниже будет предствалено одно и решений задания.
+Для обхода ошибки сделаем новый образ на основе schnitzler/mysqldump, в котрый добавим недостающие библиотеки.
+### Dockerfile
+```
+FROM schnitzler/mysqldump
+RUN apk add --no-cache mysql-client mariadb-connector-c
+```
+Собираем образ, и запускам скрипт с использованием нового образа
+## Скрипт бакапа
+```
+# Загрузка переменных из .env файла
+set -a
+source /runtimedir/.env
+set +a
 
+BACKUP_DIR="/opt/backup"
+TIMESTAMP=$(date +"%Y%m%d%H%M")
+
+# Создание директории для резервных копий, если она не существует
+mkdir -p "$BACKUP_DIR"
+
+# Выполнение резервного копирования с помощью Docker
+docker run \
+    --network runtimedir_backend\
+    --rm --entrypoint "" \
+    -v $BACKUP_DIR:/backup \
+    --link="container:runtimedir-db-1" \
+    cr.yandex\crpj0at1oiaj33rl71e0\mysqldump \
+    mysqldump --opt -h "db"  -uroot -p"$MYSQL_ROOT_PASSWORD"  "--result-file=/backup/$MYSQL_DATABASE-$TIMESTAMP.sql" "$MYSQL_DATABASE"
+
+# Удаление старых резервных копий (например, старше 7 дней)
+find "$BACKUP_DIR" -type f -name "*.sql" -mtime +7 -exec rm {} \;
+```
+## Список бакапов
+![image](https://github.com/user-attachments/assets/b20b2c43-c307-4d11-bbfb-90c1df102750)
