@@ -80,7 +80,7 @@ find "$BACKUP_DIR" -type f -name "*.sql" -mtime +7 -exec rm {} \;
 ![image](https://github.com/user-attachments/assets/2f191d80-8ef7-408e-b6d5-2d48ec7ea1ea)
 
 ## Задание 6
-Скачиваем образ тераформ и зепускаем dive
+Скачиваем образ тераформ и запускаем dive
 ```
 docker pull hashicorp/terraform:latest
 docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive hashicorp/terraform:latest
