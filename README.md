@@ -88,5 +88,7 @@ docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive 
 ![image](https://github.com/user-attachments/assets/0f30eb9c-7a5b-447d-a081-28794dbe354e)
 ![image](https://github.com/user-attachments/assets/59988015-8962-424a-af81-717507532317)
 
+## Задание 6.1
+![image](https://github.com/user-attachments/assets/07d12cde-8c2b-4987-a248-b520f79b2511)
 
 
