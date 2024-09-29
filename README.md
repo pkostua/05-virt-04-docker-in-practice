@@ -48,6 +48,9 @@ FROM schnitzler/mysqldump
 RUN apk add --no-cache mysql-client mariadb-connector-c
 ```
 Собираем образ, и запускаем скрипт с использованием нового образа
+```
+ docker build -t cr.yandex\crpj0at1oiaj33rl71e0\mysqldump .
+```
 ## Скрипт бакапа
 ```
 # Загрузка переменных из .env файла
